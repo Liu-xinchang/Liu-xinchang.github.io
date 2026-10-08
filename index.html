@@ -1,654 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>LIU Xinchang — Product & Interaction Designer</title>
-
-  <meta
-    name="description"
-    content="Portfolio of LIU Xinchang, a product and interaction designer based in Singapore."
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liu Xinchang — Product & Interaction Designer</title>
+  <meta name="description" content="Liu Xinchang — Product & Interaction Designer based in Singapore, working across emerging materials, physical computing and computational fabrication.">
   <style>
-
-    /* -----------------------------
-       GLOBAL
-    ----------------------------- */
-
-    * {
-      box-sizing: border-box;
+    /* ===== Colours: dark theme (black background, white text, grey links) ===== */
+    :root {
+      --bg: #000;
+      --text: #fff;
+      --link: #d5d5d5;
+      --muted: #8a8a8a;
+      --line: #393939;
+      --placeholder: #141414;
+      --max: 1080px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      background: #ffffff;
-      color: #111111;
-
-      font-family:
-        Inter,
-        Helvetica Neue,
-        Helvetica,
-        Arial,
-        sans-serif;
-
-      font-size: 16px;
-      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a { color: var(--link); text-decoration: none; transition: opacity .25s; }
+    a:hover { opacity: .6; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* ===== Header ===== */
+    header { border-bottom: 1px solid var(--line); }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px; padding: 22px 0;
     }
-
-    img {
-      width: 100%;
-      display: block;
+    .brand { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    .brand .name { color: var(--text); font-size: 20px; font-weight: 500; }
+    .brand .role {
+      color: var(--muted); font-size: 15px;
+      padding-left: 14px; border-left: 1px solid var(--line);
     }
+    .nav ul { list-style: none; display: flex; gap: 24px; font-size: 15px; }
 
-
-    /* -----------------------------
-       PAGE
-    ----------------------------- */
-
-    .page {
-      width: min(1400px, calc(100% - 80px));
-      margin: 0 auto;
-    }
-
-
-    /* -----------------------------
-       HEADER
-    ----------------------------- */
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-
-      padding-top: 38px;
-      padding-bottom: 90px;
-    }
-
-    .identity {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .name {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    .role {
-      font-size: 15px;
-      color: #666;
-    }
-
-    nav {
-      display: flex;
-      gap: 28px;
-      font-size: 15px;
-    }
-
-    nav a {
-      border-bottom: 1px solid transparent;
-      transition: 0.2s ease;
-    }
-
-    nav a:hover {
-      border-color: #111;
-    }
-
-
-    /* -----------------------------
-       INTRO
-    ----------------------------- */
-
+    /* ===== Intro ===== */
     .intro {
-      max-width: 900px;
-      padding-bottom: 150px;
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px;
+      align-items: center; padding: 72px 0;
     }
+    .intro p + p { margin-top: 18px; }
+    .intro .lead { font-size: 20px; }
+    .intro .sub { color: var(--muted); }
 
-    .intro h1 {
-      font-size: clamp(42px, 6vw, 82px);
-      line-height: 1.03;
-
-      letter-spacing: -0.045em;
-      font-weight: 500;
-
-      margin: 0 0 38px 0;
+    /* Profile photo: shows photo 1, cross-fades to photo 2 on hover / tap */
+    .portrait {
+      position: relative;
+      aspect-ratio: 1 / 1; background: var(--placeholder);
+      display: flex; align-items: center; justify-content: center;
+      color: #555; font-size: 14px; overflow: hidden;
+      cursor: pointer;
     }
-
-    .intro p {
-      max-width: 720px;
-
-      font-size: clamp(18px, 2vw, 25px);
-      line-height: 1.45;
-
-      margin: 0;
-
-      color: #333;
+    .portrait img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%; /* keeps the face in frame */
+      display: block;
+      transition: opacity .8s ease;
     }
+    .portrait .photo-2 { opacity: 0; }
+    .portrait:hover .photo-2,
+    .portrait.show-2 .photo-2 { opacity: 1; }
 
+    /* ===== Sections ===== */
+    section { padding: 64px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 26px; font-weight: 500; margin-bottom: 36px; }
+    h3 { font-size: 15px; font-weight: 500; color: var(--muted);
+         text-transform: uppercase; letter-spacing: .1em; margin: 36px 0 18px; }
 
-    /* -----------------------------
-       SECTION
-    ----------------------------- */
-
-    section {
-      padding-bottom: 160px;
-    }
-
-    .section-title {
-      font-size: 14px;
-
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-
-      margin-bottom: 35px;
-
-      color: #666;
-    }
-
-
-    /* -----------------------------
-       PROJECTS
-    ----------------------------- */
-
-    .project {
-      margin-bottom: 110px;
-    }
-
-    .project-image {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-
-      background: #efefef;
-
-      overflow: hidden;
-    }
-
-    .project-image img {
-      height: 100%;
-      object-fit: cover;
-
-      transition: transform 0.5s ease;
-    }
-
-    .project:hover img {
-      transform: scale(1.015);
-    }
-
-    .project-info {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-
-      gap: 40px;
-
-      padding-top: 18px;
-    }
-
-    .project-title {
-      font-size: 27px;
-
-      letter-spacing: -0.025em;
-
-      margin-bottom: 6px;
-    }
-
-    .project-description {
-      color: #555;
-
-      font-size: 16px;
-    }
-
-    .project-tags {
-      color: #777;
-
-      font-size: 14px;
-
-      text-align: right;
-    }
-
-
-    /* -----------------------------
-       RESEARCH
-    ----------------------------- */
-
-    .research-item {
-      display: grid;
-
-      grid-template-columns: 130px 1fr;
-
-      gap: 30px;
-
-      border-top: 1px solid #d8d8d8;
-
-      padding: 22px 0;
-    }
-
-    .research-year {
-      color: #777;
-    }
-
-    .research-title {
-      max-width: 800px;
-
-      font-size: 19px;
-
-      line-height: 1.4;
-    }
-
-
-    /* -----------------------------
-       ABOUT
-    ----------------------------- */
-
-    .about-grid {
-      display: grid;
-
-      grid-template-columns: 1fr 2fr;
-
-      gap: 80px;
-    }
-
-    .about-text {
-      max-width: 720px;
-
-      font-size: 23px;
-
-      line-height: 1.5;
-    }
-
-
-    /* -----------------------------
-       FOOTER
-    ----------------------------- */
-
-    footer {
-      border-top: 1px solid #d8d8d8;
-
-      padding: 35px 0 50px;
-
+    /* ===== Carousel ===== */
+    .carousel { position: relative; width: 82%; margin: 0 auto; }
+    .viewport { overflow: hidden; }
+    .track {
       display: flex;
-      justify-content: space-between;
-
-      font-size: 14px;
-
-      color: #666;
+      transition: transform .7s cubic-bezier(.65,0,.35,1);
     }
+    .slide { flex: 0 0 100%; }
+    .slide a { display: block; color: inherit; }
+    .slide a:hover { opacity: 1; }
 
-    .footer-links {
-      display: flex;
-      gap: 25px;
+    .slide-img {
+      position: relative; aspect-ratio: 16 / 10;
+      background: var(--placeholder); overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      color: #555; font-size: 14px;
     }
-
-
-    /* -----------------------------
-       MOBILE
-    ----------------------------- */
-
-    @media (max-width: 800px) {
-
-      .page {
-        width: calc(100% - 36px);
-      }
-
-      header {
-        flex-direction: column;
-        gap: 25px;
-
-        padding-bottom: 70px;
-      }
-
-      nav {
-        gap: 18px;
-        flex-wrap: wrap;
-      }
-
-      .intro {
-        padding-bottom: 100px;
-      }
-
-      section {
-        padding-bottom: 100px;
-      }
-
-      .project {
-        margin-bottom: 70px;
-      }
-
-      .project-info {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .project-tags {
-        text-align: left;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .research-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 20px;
-      }
-
+    .slide-img img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter .6s ease, transform .8s ease;
     }
+    .slide a:hover .slide-img img { filter: grayscale(0%); transform: scale(1.02); }
 
+    /* "View project" overlay that fades in on hover */
+    .overlay {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.35);
+      color: #fff; font-size: 16px; letter-spacing: .05em;
+      opacity: 0; transition: opacity .5s ease;
+    }
+    .slide a:hover .overlay { opacity: 1; }
+
+    .caption { padding-top: 22px; text-align: center; }
+    .caption h4 { font-size: 21px; font-weight: 500; color: var(--text); }
+    .caption .tags { color: var(--muted); font-size: 15px; font-style: italic; margin-top: 4px; }
+
+    .arrow {
+      position: absolute; top: 31%; transform: translateY(-50%);
+      background: none; border: none; color: var(--text);
+      font-size: 34px; line-height: 1; cursor: pointer;
+      padding: 12px; opacity: .55; transition: opacity .25s;
+    }
+    .arrow:hover { opacity: 1; }
+    .arrow.prev { left: -64px; }
+    .arrow.next { right: -64px; }
+
+    .dots { display: flex; justify-content: center; gap: 10px; margin-top: 26px; }
+    .dots button {
+      width: 28px; height: 3px; border: none; padding: 0;
+      background: var(--line); cursor: pointer; transition: background .3s;
+    }
+    .dots button.active { background: var(--text); }
+
+    /* ===== Publications ===== */
+    .pub { padding: 14px 0; }
+    .pub .authors b { color: var(--text); }
+    .pub .venue { color: var(--muted); font-style: italic; }
+
+    /* ===== About ===== */
+    .about { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; }
+    .about p + p { margin-top: 18px; }
+    .skills { color: var(--muted); font-size: 15px; line-height: 2; }
+
+    /* ===== Footer ===== */
+    footer { border-top: 1px solid var(--line); padding: 64px 0 48px; }
+    .links { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 8px; }
+    .copy { margin-top: 56px; color: var(--muted); font-size: 13px; }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 860px) {
+      .carousel { width: 100%; }
+      .arrow { top: auto; bottom: -14px; transform: none; font-size: 28px; }
+      .arrow.prev { left: 0; }
+      .arrow.next { right: 0; }
+    }
+    @media (max-width: 720px) {
+      body { font-size: 16px; }
+      .intro, .about { grid-template-columns: 1fr; gap: 32px; }
+      .intro { padding: 48px 0; }
+      .portrait { max-width: 280px; }
+      section { padding: 48px 0; }
+      .nav ul { gap: 16px; font-size: 14px; }
+    }
   </style>
 </head>
-
-
-
 <body>
 
-<div class="page">
-
-
-  <!-- HEADER -->
-
+  <!-- ================= HEADER ================= -->
   <header>
-
-    <div class="identity">
-
-      <div class="name">
-        LIU XINCHANG
+    <div class="wrap nav">
+      <div class="brand">
+        <a href="#" class="name">Liu Xinchang</a>
+        <span class="role">Product &amp; Interaction Designer</span>
       </div>
-
-      <div class="role">
-        Product & Interaction Designer
-      </div>
-
+      <ul>
+        <li><a href="#work">work</a></li>
+        <li><a href="#research">research</a></li>
+        <li><a href="#about">about</a></li>
+        <li><a href="cv.pdf" target="_blank">cv</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
     </div>
-
-
-    <nav>
-
-      <a href="#work">work</a>
-
-      <a href="#research">research</a>
-
-      <a href="#about">about</a>
-
-      <a href="cv.pdf" target="_blank">cv</a>
-
-      <a href="mailto:e1521344@u.nus.edu">contact</a>
-
-    </nav>
-
   </header>
 
+  <main class="wrap">
 
-
-  <!-- INTRO -->
-
-  <section class="intro">
-
-    <h1>
-      Designing physical interactions
-      through materials, computation,
-      and fabrication.
-    </h1>
-
-    <p>
-
-      I'm Xinchang, a product and interaction designer
-      based in Singapore.
-
-      Currently pursuing a Research Master's degree at
-      the National University of Singapore, I explore
-      emerging materials, physical computing,
-      smart textiles, and computational fabrication.
-
-    </p>
-
-  </section>
-
-
-
-  <!-- SELECTED WORK -->
-
-  <section id="work">
-
-    <div class="section-title">
-      Selected Work
-    </div>
-
-
-
-    <!-- PROJECT 01 -->
-
-    <a class="project" href="#">
-
-      <div class="project-image">
-
-        <!-- Replace with your image later -->
-
-      </div>
-
-
-      <div class="project-info">
-
-        <div>
-
-          <div class="project-title">
-            PeraNETS
-          </div>
-
-          <div class="project-description">
-            Peranakan-Inspired Architectural Tiles
-            as Modular Interfaces
-          </div>
-
-        </div>
-
-
-        <div class="project-tags">
-          Interaction Design · HCI · Fabrication
-        </div>
-
-      </div>
-
-    </a>
-
-
-
-    <!-- PROJECT 02 -->
-
-    <a class="project" href="#">
-
-      <div class="project-image"></div>
-
-
-      <div class="project-info">
-
-        <div>
-
-          <div class="project-title">
-            Hydrogel–Nanofiber Composite Fiber
-          </div>
-
-          <div class="project-description">
-            Exploring fiber-scale fabrication
-            for future wearable devices.
-          </div>
-
-        </div>
-
-
-        <div class="project-tags">
-          Material Research · Wearable Technology
-        </div>
-
-      </div>
-
-    </a>
-
-
-
-    <!-- PROJECT 03 -->
-
-    <a class="project" href="#">
-
-      <div class="project-image"></div>
-
-
-      <div class="project-info">
-
-        <div>
-
-          <div class="project-title">
-            Liquid Metal Textile Interface
-          </div>
-
-          <div class="project-description">
-            Exploring deformable conductive materials
-            for textile interaction.
-          </div>
-
-        </div>
-
-
-        <div class="project-tags">
-          Smart Textile · Physical Computing
-        </div>
-
-      </div>
-
-    </a>
-
-
-  </section>
-
-
-
-  <!-- RESEARCH -->
-
-  <section id="research">
-
-    <div class="section-title">
-      Research & Publications
-    </div>
-
-
-    <div class="research-item">
-
-      <div class="research-year">
-        2026
-      </div>
-
-      <div class="research-title">
-
-        PeraNETS:
-        Peranakan-Inspired Architectural Tiles
-        as Modular Interfaces
-
-        — DIS 2026
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ABOUT -->
-
-  <section id="about">
-
-    <div class="section-title">
-      About
-    </div>
-
-
-    <div class="about-grid">
-
+    <!-- ================= INTRO ================= -->
+    <div class="intro">
       <div>
-        Singapore
+        <p class="lead">My name is Liu Xinchang. I am a Product &amp; Interaction Designer based in Singapore, designing physical interactions through materials, computation, and fabrication.</p>
+        <p class="sub">I build working prototypes that bring emerging materials, physical computing and computational fabrication into everyday products — starting from a material or interaction question, testing it through rapid physical experiments, and iterating until it becomes a working system.</p>
       </div>
-
-
-      <div class="about-text">
-
-        I am a product and interaction designer
-        currently pursuing a Research Master's degree
-        at the National University of Singapore.
-
-        <br><br>
-
-        My work sits between industrial design,
-        human-computer interaction,
-        emerging materials,
-        physical computing,
-        and computational fabrication.
-
-        <br><br>
-
-        I am interested in how new materials
-        and manufacturing processes can enable
-        new forms of physical interaction.
-
+      <!-- Photos: images/profile-1.jpg (default) and images/profile-2.jpg (on hover) -->
+      <div class="portrait" id="portrait">
+        <span>Photo</span>
+        <img class="photo-1" src="images/profile-1.jpg" alt="Liu Xinchang at DIS 2026" onerror="this.remove()">
+        <img class="photo-2" src="images/profile-2.jpg" alt="" aria-hidden="true" onerror="this.remove()">
       </div>
-
     </div>
 
-  </section>
+    <!-- ================= HIGHLIGHTED WORK (CAROUSEL) ================= -->
+    <section id="work">
+      <h2>Highlighted Work</h2>
 
+      <div class="carousel" id="carousel">
+        <div class="viewport">
+          <div class="track">
 
+            <!-- Slide 1: image at images/peranets.jpg, links to projects/peranets.html -->
+            <div class="slide">
+              <a href="projects/peranets.html">
+                <div class="slide-img">
+                  <span>Image coming soon</span>
+                  <img src="images/peranets.jpg" alt="PeraNETS" onerror="this.remove()">
+                  <div class="overlay">View project →</div>
+                </div>
+                <div class="caption">
+                  <h4>PeraNETS</h4>
+                  <div class="tags">Interaction Design · HCI · Fabrication — DIS 2026</div>
+                </div>
+              </a>
+            </div>
 
-  <!-- FOOTER -->
+            <!-- Slide 2 -->
+            <div class="slide">
+              <a href="projects/hydrogel.html">
+                <div class="slide-img">
+                  <span>Image coming soon</span>
+                  <img src="images/hydrogel.jpg" alt="Hydrogel–Nanofiber Composite Fiber" onerror="this.remove()">
+                  <div class="overlay">View project →</div>
+                </div>
+                <div class="caption">
+                  <h4>Hydrogel–Nanofiber Composite Fiber</h4>
+                  <div class="tags">Material Research · Wearable Technology</div>
+                </div>
+              </a>
+            </div>
 
-  <footer>
+            <!-- Slide 3 -->
+            <div class="slide">
+              <a href="projects/liquid-metal.html">
+                <div class="slide-img">
+                  <span>Image coming soon</span>
+                  <img src="images/liquid-metal.jpg" alt="Liquid Metal Textile Interface" onerror="this.remove()">
+                  <div class="overlay">View project →</div>
+                </div>
+                <div class="caption">
+                  <h4>Liquid Metal Textile Interface</h4>
+                  <div class="tags">Smart Textile · Physical Computing</div>
+                </div>
+              </a>
+            </div>
 
-    <div>
-      © 2026 LIU Xinchang
+            <!-- To add a project: copy one whole <div class="slide">…</div> block here -->
+
+          </div>
+        </div>
+
+        <button class="arrow prev" aria-label="Previous">‹</button>
+        <button class="arrow next" aria-label="Next">›</button>
+        <div class="dots"></div>
+      </div>
+    </section>
+
+    <!-- ================= RESEARCH ================= -->
+    <section id="research">
+      <h2>Publications</h2>
+
+      <h3>Interaction Design &amp; HCI</h3>
+      <div class="pub">
+        <span class="authors"><b>Liu, X.</b>, Co-author, A., &amp; Co-author, B.</span> (2026).
+        <a href="#">"PeraNETS: Peranakan-Inspired Architectural Tiles as Modular Interfaces"</a>
+        <span class="venue">ACM Designing Interactive Systems Conference (DIS).</span>
+      </div>
+      <!-- Copy the <div class="pub"> block above to add more -->
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about">
+      <h2>About</h2>
+      <div class="about">
+        <div class="skills">
+          Industrial Design<br>
+          Interaction Design<br>
+          Physical Prototyping<br>
+          Arduino / C++<br>
+          CAD &amp; Digital Fabrication<br>
+          Material Experimentation
+        </div>
+        <div>
+          <p>I hold a Research Master in Industrial Design from the National University of Singapore and a Bachelor's in Product Design from Hunan University of Technology.</p>
+          <p>My work sits between design and engineering: materials, sensing and fabrication are where I look for new ways people can interact with physical products.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= CONTACT ================= -->
+  <footer id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p style="color: var(--muted);">Open to product, interaction and R&amp;D design roles in Singapore.</p>
+      <div class="links" style="margin-top: 20px;">
+        <a href="mailto:your.email@example.com">email</a>
+        <a href="https://www.linkedin.com/in/your-profile" target="_blank">linkedin</a>
+        <a href="cv.pdf" target="_blank">cv (pdf)</a>
+      </div>
+      <div class="copy">© 2026 Liu Xinchang</div>
     </div>
-
-
-    <div class="footer-links">
-
-      <a href="mailto:e1521344@u.nus.edu">
-        Email
-      </a>
-
-      <a href="#">
-        LinkedIn
-      </a>
-
-      <a href="cv.pdf">
-        CV
-      </a>
-
-    </div>
-
   </footer>
 
+  <!-- ================= PORTRAIT: tap to switch on phones ================= -->
+  <script>
+    document.getElementById('portrait').addEventListener('click', function () {
+      this.classList.toggle('show-2');
+    });
+  </script>
 
-</div>
+  <!-- ================= CAROUSEL SCRIPT ================= -->
+  <script>
+    (function () {
+      var root = document.getElementById('carousel');
+      var track = root.querySelector('.track');
+      var slides = root.querySelectorAll('.slide');
+      var dotsBox = root.querySelector('.dots');
+      var index = 0;
+      var timer;
+      var DELAY = 5000; // auto-scroll every 5 seconds
+
+      slides.forEach(function (_, i) {
+        var b = document.createElement('button');
+        b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        b.addEventListener('click', function () { go(i); restart(); });
+        dotsBox.appendChild(b);
+      });
+      var dots = dotsBox.querySelectorAll('button');
+
+      function go(i) {
+        index = (i + slides.length) % slides.length;
+        track.style.transform = 'translateX(-' + index * 100 + '%)';
+        dots.forEach(function (d, j) { d.classList.toggle('active', j === index); });
+      }
+      function restart() {
+        clearInterval(timer);
+        timer = setInterval(function () { go(index + 1); }, DELAY);
+      }
+
+      root.querySelector('.prev').addEventListener('click', function () { go(index - 1); restart(); });
+      root.querySelector('.next').addEventListener('click', function () { go(index + 1); restart(); });
+
+      // Pause while the mouse is over the carousel
+      root.addEventListener('mouseenter', function () { clearInterval(timer); });
+      root.addEventListener('mouseleave', restart);
+
+      // Swipe on phones
+      var startX = null;
+      root.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+      root.addEventListener('touchend', function (e) {
+        if (startX === null) return;
+        var dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) { go(index + (dx < 0 ? 1 : -1)); restart(); }
+        startX = null;
+      });
+
+      go(0);
+      restart();
+    })();
+  </script>
 
 </body>
-
 </html>
