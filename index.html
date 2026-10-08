@@ -1,49 +1,654 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LIU Xinchang — Portfolio</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>LIU Xinchang — Product & Interaction Designer</title>
+
+  <meta
+    name="description"
+    content="Portfolio of LIU Xinchang, a product and interaction designer based in Singapore."
+  >
 
   <style>
+
+    /* -----------------------------
+       GLOBAL
+    ----------------------------- */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
-      background: white;
-      color: #111;
+      background: #ffffff;
+      color: #111111;
+
+      font-family:
+        Inter,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+      font-size: 16px;
+      line-height: 1.5;
     }
 
-    .container {
-      max-width: 1200px;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+
+    /* -----------------------------
+       PAGE
+    ----------------------------- */
+
+    .page {
+      width: min(1400px, calc(100% - 80px));
       margin: 0 auto;
-      padding: 80px 40px;
     }
 
-    h1 {
-      font-size: 64px;
-      margin-bottom: 20px;
+
+    /* -----------------------------
+       HEADER
+    ----------------------------- */
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      padding-top: 38px;
+      padding-bottom: 90px;
     }
 
-    p {
-      font-size: 22px;
-      line-height: 1.6;
-      max-width: 700px;
+    .identity {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
+
+    .name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .role {
+      font-size: 15px;
+      color: #666;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+      font-size: 15px;
+    }
+
+    nav a {
+      border-bottom: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    nav a:hover {
+      border-color: #111;
+    }
+
+
+    /* -----------------------------
+       INTRO
+    ----------------------------- */
+
+    .intro {
+      max-width: 900px;
+      padding-bottom: 150px;
+    }
+
+    .intro h1 {
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: 1.03;
+
+      letter-spacing: -0.045em;
+      font-weight: 500;
+
+      margin: 0 0 38px 0;
+    }
+
+    .intro p {
+      max-width: 720px;
+
+      font-size: clamp(18px, 2vw, 25px);
+      line-height: 1.45;
+
+      margin: 0;
+
+      color: #333;
+    }
+
+
+    /* -----------------------------
+       SECTION
+    ----------------------------- */
+
+    section {
+      padding-bottom: 160px;
+    }
+
+    .section-title {
+      font-size: 14px;
+
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+
+      margin-bottom: 35px;
+
+      color: #666;
+    }
+
+
+    /* -----------------------------
+       PROJECTS
+    ----------------------------- */
+
+    .project {
+      margin-bottom: 110px;
+    }
+
+    .project-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+
+      background: #efefef;
+
+      overflow: hidden;
+    }
+
+    .project-image img {
+      height: 100%;
+      object-fit: cover;
+
+      transition: transform 0.5s ease;
+    }
+
+    .project:hover img {
+      transform: scale(1.015);
+    }
+
+    .project-info {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+
+      gap: 40px;
+
+      padding-top: 18px;
+    }
+
+    .project-title {
+      font-size: 27px;
+
+      letter-spacing: -0.025em;
+
+      margin-bottom: 6px;
+    }
+
+    .project-description {
+      color: #555;
+
+      font-size: 16px;
+    }
+
+    .project-tags {
+      color: #777;
+
+      font-size: 14px;
+
+      text-align: right;
+    }
+
+
+    /* -----------------------------
+       RESEARCH
+    ----------------------------- */
+
+    .research-item {
+      display: grid;
+
+      grid-template-columns: 130px 1fr;
+
+      gap: 30px;
+
+      border-top: 1px solid #d8d8d8;
+
+      padding: 22px 0;
+    }
+
+    .research-year {
+      color: #777;
+    }
+
+    .research-title {
+      max-width: 800px;
+
+      font-size: 19px;
+
+      line-height: 1.4;
+    }
+
+
+    /* -----------------------------
+       ABOUT
+    ----------------------------- */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 2fr;
+
+      gap: 80px;
+    }
+
+    .about-text {
+      max-width: 720px;
+
+      font-size: 23px;
+
+      line-height: 1.5;
+    }
+
+
+    /* -----------------------------
+       FOOTER
+    ----------------------------- */
+
+    footer {
+      border-top: 1px solid #d8d8d8;
+
+      padding: 35px 0 50px;
+
+      display: flex;
+      justify-content: space-between;
+
+      font-size: 14px;
+
+      color: #666;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 25px;
+    }
+
+
+    /* -----------------------------
+       MOBILE
+    ----------------------------- */
+
+    @media (max-width: 800px) {
+
+      .page {
+        width: calc(100% - 36px);
+      }
+
+      header {
+        flex-direction: column;
+        gap: 25px;
+
+        padding-bottom: 70px;
+      }
+
+      nav {
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .intro {
+        padding-bottom: 100px;
+      }
+
+      section {
+        padding-bottom: 100px;
+      }
+
+      .project {
+        margin-bottom: 70px;
+      }
+
+      .project-info {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .project-tags {
+        text-align: left;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .research-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+    }
+
   </style>
 </head>
 
+
+
 <body>
-  <div class="container">
-    <h1>LIU XINCHANG</h1>
+
+<div class="page">
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="identity">
+
+      <div class="name">
+        LIU XINCHANG
+      </div>
+
+      <div class="role">
+        Product & Interaction Designer
+      </div>
+
+    </div>
+
+
+    <nav>
+
+      <a href="#work">work</a>
+
+      <a href="#research">research</a>
+
+      <a href="#about">about</a>
+
+      <a href="cv.pdf" target="_blank">cv</a>
+
+      <a href="mailto:e1521344@u.nus.edu">contact</a>
+
+    </nav>
+
+  </header>
+
+
+
+  <!-- INTRO -->
+
+  <section class="intro">
+
+    <h1>
+      Designing physical interactions
+      through materials, computation,
+      and fabrication.
+    </h1>
 
     <p>
-      Product & Interaction Designer based in Singapore.
+
+      I'm Xinchang, a product and interaction designer
+      based in Singapore.
+
+      Currently pursuing a Research Master's degree at
+      the National University of Singapore, I explore
+      emerging materials, physical computing,
+      smart textiles, and computational fabrication.
+
     </p>
 
-    <p>
-      Exploring emerging materials, physical computing,
-      and computational fabrication.
-    </p>
-  </div>
+  </section>
+
+
+
+  <!-- SELECTED WORK -->
+
+  <section id="work">
+
+    <div class="section-title">
+      Selected Work
+    </div>
+
+
+
+    <!-- PROJECT 01 -->
+
+    <a class="project" href="#">
+
+      <div class="project-image">
+
+        <!-- Replace with your image later -->
+
+      </div>
+
+
+      <div class="project-info">
+
+        <div>
+
+          <div class="project-title">
+            PeraNETS
+          </div>
+
+          <div class="project-description">
+            Peranakan-Inspired Architectural Tiles
+            as Modular Interfaces
+          </div>
+
+        </div>
+
+
+        <div class="project-tags">
+          Interaction Design · HCI · Fabrication
+        </div>
+
+      </div>
+
+    </a>
+
+
+
+    <!-- PROJECT 02 -->
+
+    <a class="project" href="#">
+
+      <div class="project-image"></div>
+
+
+      <div class="project-info">
+
+        <div>
+
+          <div class="project-title">
+            Hydrogel–Nanofiber Composite Fiber
+          </div>
+
+          <div class="project-description">
+            Exploring fiber-scale fabrication
+            for future wearable devices.
+          </div>
+
+        </div>
+
+
+        <div class="project-tags">
+          Material Research · Wearable Technology
+        </div>
+
+      </div>
+
+    </a>
+
+
+
+    <!-- PROJECT 03 -->
+
+    <a class="project" href="#">
+
+      <div class="project-image"></div>
+
+
+      <div class="project-info">
+
+        <div>
+
+          <div class="project-title">
+            Liquid Metal Textile Interface
+          </div>
+
+          <div class="project-description">
+            Exploring deformable conductive materials
+            for textile interaction.
+          </div>
+
+        </div>
+
+
+        <div class="project-tags">
+          Smart Textile · Physical Computing
+        </div>
+
+      </div>
+
+    </a>
+
+
+  </section>
+
+
+
+  <!-- RESEARCH -->
+
+  <section id="research">
+
+    <div class="section-title">
+      Research & Publications
+    </div>
+
+
+    <div class="research-item">
+
+      <div class="research-year">
+        2026
+      </div>
+
+      <div class="research-title">
+
+        PeraNETS:
+        Peranakan-Inspired Architectural Tiles
+        as Modular Interfaces
+
+        — DIS 2026
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-title">
+      About
+    </div>
+
+
+    <div class="about-grid">
+
+      <div>
+        Singapore
+      </div>
+
+
+      <div class="about-text">
+
+        I am a product and interaction designer
+        currently pursuing a Research Master's degree
+        at the National University of Singapore.
+
+        <br><br>
+
+        My work sits between industrial design,
+        human-computer interaction,
+        emerging materials,
+        physical computing,
+        and computational fabrication.
+
+        <br><br>
+
+        I am interested in how new materials
+        and manufacturing processes can enable
+        new forms of physical interaction.
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div>
+      © 2026 LIU Xinchang
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="mailto:e1521344@u.nus.edu">
+        Email
+      </a>
+
+      <a href="#">
+        LinkedIn
+      </a>
+
+      <a href="cv.pdf">
+        CV
+      </a>
+
+    </div>
+
+  </footer>
+
+
+</div>
+
 </body>
+
 </html>
