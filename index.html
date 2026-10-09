@@ -107,13 +107,13 @@
     }
     .slide a:hover .slide-img img { filter: grayscale(0%); transform: scale(1.02); }
 
-    /* Video cover: always in colour, fills the frame */
-    .slide-img video {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .8s ease;
-    }
-    .slide a:hover .slide-img video { transform: scale(1.02); }
+    /* Two-photo cover: always in colour, photo 2 fades in on hover (like the profile photo) */
+    .slide-img.swap img { filter: none; transition: opacity .8s ease, transform .8s ease; }
+    .slide-img.swap .swap-2 { opacity: 0; }
+    .slide a:hover .slide-img.swap .swap-2 { opacity: 1; }
+    .slide a:hover .slide-img.swap img { filter: none; }
+    /* Lighter overlay here so the photo change stays visible */
+    .slide-img.swap .overlay { background: rgba(0,0,0,.12); align-items: flex-end; padding-bottom: 22px; }
 
     /* "View project" overlay that fades in on hover */
     .overlay {
@@ -225,12 +225,12 @@
         <div class="viewport">
           <div class="track">
 
-            <!-- Slide 1: autoplaying video cover, links to projects/peranets.html -->
+            <!-- Slide 1: shows cover-1, cross-fades to cover-2 on hover (same effect as the profile photo) -->
             <div class="slide">
               <a href="projects/peranets.html">
-                <div class="slide-img">
-                  <video class="cover-video" src="videos/peranets-cover.mp4" poster="images/peranets/cover-poster.jpg"
-                         autoplay muted loop playsinline preload="auto" aria-label="PeraNETS interactive tiles"></video>
+                <div class="slide-img swap">
+                  <img class="swap-1" src="images/peranets/cover-1.jpg" alt="PeraNETS interactive tile wall">
+                  <img class="swap-2" src="images/peranets/cover-2.jpg" alt="" aria-hidden="true">
                   <div class="overlay">View project →</div>
                 </div>
                 <div class="caption">
