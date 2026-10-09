@@ -107,6 +107,14 @@
     }
     .slide a:hover .slide-img img { filter: grayscale(0%); transform: scale(1.02); }
 
+    /* Video cover: always in colour, fills the frame */
+    .slide-img video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .8s ease;
+    }
+    .slide a:hover .slide-img video { transform: scale(1.02); }
+
     /* "View project" overlay that fades in on hover */
     .overlay {
       position: absolute; inset: 0; z-index: 2;
@@ -217,12 +225,12 @@
         <div class="viewport">
           <div class="track">
 
-            <!-- Slide 1: image at images/peranets.jpg, links to projects/peranets.html -->
+            <!-- Slide 1: autoplaying video cover, links to projects/peranets.html -->
             <div class="slide">
               <a href="projects/peranets.html">
                 <div class="slide-img">
-                  <span>Image coming soon</span>
-                  <img src="images/peranets.jpg" alt="PeraNETS" onerror="this.remove()">
+                  <video class="cover-video" src="videos/peranets-cover.mp4" poster="images/peranets/cover-poster.jpg"
+                         autoplay muted loop playsinline preload="auto" aria-label="PeraNETS interactive tiles"></video>
                   <div class="overlay">View project →</div>
                 </div>
                 <div class="caption">
@@ -353,6 +361,13 @@
         index = (i + slides.length) % slides.length;
         track.style.transform = 'translateX(-' + index * 100 + '%)';
         dots.forEach(function (d, j) { d.classList.toggle('active', j === index); });
+        // Only play the video on the visible slide
+        slides.forEach(function (s, j) {
+          var v = s.querySelector('video');
+          if (!v) return;
+          if (j === index) { var p = v.play(); if (p) p.catch(function () {}); }
+          else v.pause();
+        });
       }
       function restart() {
         clearInterval(timer);
