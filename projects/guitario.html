@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PeraNETs — Liu Xinchang</title>
-  <meta name="description" content="PeraNETs reimagines heritage ornament as a system of interactive, computational tiles.">
+  <title>GuitarIO — Liu Xinchang</title>
+  <meta name="description" content="GuitarIO is an interactive guitar that integrates multimodal sensing and feedback for adaptive learning.">
   <style>
     :root {
       --bg: #000;
@@ -121,6 +121,21 @@
       .row { flex-direction: column; }
       .row figure { flex: none; }
     }
+
+    /* Wide video for GuitarIO */
+    .hero.single { grid-template-columns: 1fr; gap: 0; padding-bottom: 40px; }
+    .hero.single .intro-text { max-width: 820px; }
+    .video-wide { position: relative; background: #000; margin-bottom: 72px; }
+    .video-wide video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+    .video-wide .sound-btn { top: 16px; }
+
+    /* Figure sections with a heading and caption */
+    .fig { margin-bottom: 72px; }
+    .fig h2 { font-size: 15px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+    .fig figure { background: var(--placeholder); cursor: zoom-in; overflow: hidden; }
+    .fig img { display: block; width: 100%; height: auto; transition: transform .8s ease; }
+    .fig figure:hover img { transform: scale(1.01); }
+    .fig figcaption, .fig .cap { margin-top: 14px; color: var(--muted); font-size: 15px; max-width: 820px; }
   </style>
 </head>
 <body>
@@ -145,54 +160,68 @@
 
     <a href="../index.html#work" class="back">← All work</a>
 
-    <!-- ================= INTRO + VIDEO ================= -->
-    <div class="hero">
-      <div>
-        <h1>PeraNETs</h1>
-        <div class="subtitle">Peranakan-Inspired Architectural Tiles as Modular Interfaces</div>
+    <!-- ================= INTRO ================= -->
+    <div class="hero single">
+      <div class="intro-text">
+        <h1>GuitarIO</h1>
+        <div class="subtitle">An interactive guitar for adaptive, embodied learning</div>
 
         <div class="meta">
-          <div><span>Venue</span>ACM DIS 2026</div>
-          <div><span>Lab</span>Soft Technologies Lab, NUS</div>
-          <div><span>Field</span>Interaction Design · HCI · Fabrication</div>
+          <div><span>Field</span>Interaction Design · HCI · Physical Computing</div>
+          <div><span>Sensing &amp; Feedback</span>Fret contact · Pressure · LEDs · Vibration</div>
+          <div><span>Study</span>25 participants (15 beginner, 10 intermediate)</div>
         </div>
 
-        <p>PeraNETs reimagines heritage ornament as a system of interactive, computational tiles. Each tile operates as part of a modular network, sensing gestures and environmental changes while exchanging information with its neighbors.</p>
-        <p>Across larger surfaces, static motifs become a connected system, shifting, responding, and evolving through interaction, behaviour, and context to create architecture and surfaces that can perceive, communicate, and change with the people and environments around them.</p>
-      </div>
-
-      <div class="video-box">
-        <video id="project-video" src="../videos/peranets.mp4" poster="../images/peranets/video-poster.jpg"
-               loop playsinline controls preload="auto"></video>
-        <button class="sound-btn" id="sound-btn" hidden>🔊 Tap for sound</button>
+        <p>Learning guitar requires beginners to coordinate finger placement, pressure, rhythm, and movement, yet much self-directed learning still relies on static diagrams or screen-based instruction with limited awareness of how the instrument is physically being played.</p>
+        <p>We present GuitarIO, an interactive guitar that integrates multimodal sensing and feedback directly into the instrument to support adaptive learning. A 3D-printed conductive fret array detects fret–string contact, while pressure-sensing channels measure fretting force. Embedded LEDs provide spatial guidance at the fretboard, vibrotactile feedback communicates errors, and a companion interface visualizes accuracy, progress, and score. Rather than providing constant assistance, GuitarIO progressively removes visual guidance as learners become more consistent.</p>
+        <p>We evaluate the system with 25 participants: 15 beginners and 10 intermediate players, across multiple feedback and learning modes. GuitarIO demonstrates how multimodal feedback and progressive fading of assistance can support more adaptive and embodied guitar learning while reducing reliance on external guidance.</p>
       </div>
     </div>
 
-    <!-- ================= GALLERY =================
-         Each <figure> has --r = image width ÷ height, which keeps every row the same height.
-         To add an image: copy a <figure> line, change the file name and --r. -->
-    <div class="gallery">
-      <div class="row">
-        <figure style="--r:1.217"><img src="../images/peranets/01-wall.jpg" alt="A hand touching an illuminated PeraNETs tile wall" loading="lazy"></figure>
+    <!-- ================= VIDEO (plays with sound) ================= -->
+    <div class="video-wide">
+      <video id="project-video" src="../videos/guitario.mp4" poster="../images/guitario/video-poster.jpg"
+             playsinline controls preload="auto"></video>
+      <button class="sound-btn" id="sound-btn" hidden>🔊 Tap for sound</button>
+    </div>
+
+    <!-- ================= FIGURES ================= -->
+    <div class="zoomable">
+
+      <div class="fig">
+        <figure><img src="../images/guitario/01-play.jpg" alt="Playing GuitarIO with LED chord guidance on the neck and colour-coded fingertips" loading="lazy"></figure>
       </div>
-      <div class="row">
-        <figure style="--r:1.217"><img src="../images/peranets/02-glow.jpg" alt="Tiles glowing purple and blue" loading="lazy"></figure>
-        <figure style="--r:1.217"><img src="../images/peranets/03-detail.jpg" alt="Close-up of layered acrylic inlay" loading="lazy"></figure>
+
+      <div class="fig">
+        <h2>Overview</h2>
+        <figure><img src="../images/guitario/02-overview.jpg" alt="GuitarIO overview: the instrument, sensing data flow between the guitar and computer, and the companion interface" loading="lazy"></figure>
+        <p class="cap">The guitar senses where and how hard each string is pressed, sends the data to a companion app, and receives instructions back — lighting the next fingering on the neck and tracking progress on screen.</p>
       </div>
-      <div class="row">
-        <figure style="--r:1.333"><img src="../images/peranets/04-network.jpg" alt="A single tile above the networked LED node grid" loading="lazy"></figure>
+
+      <div class="fig">
+        <h2>System &amp; Hardware</h2>
+        <figure><img src="../images/guitario/03-system.jpg" alt="Exploded view, wiring schematic and assembled prototype" loading="lazy"></figure>
+        <p class="cap">(A) Exploded view of the instrument with the conductive fret array, pressure-sensing channels and LED strips layered into the neck. (B) Wiring: a microcontroller reads 6 strings × 23 frets through an analog multiplexer, six pressure channels, and drives six WS2812B LED strips (6 × 92 LEDs) and a vibration motor. (C) The assembled prototype.</p>
       </div>
-      <div class="row">
-        <figure style="--r:1.217"><img src="../images/peranets/05-connectors.jpg" alt="Tile edge showing magnetic pogo-pin connectors" loading="lazy"></figure>
-        <figure style="--r:1.217"><img src="../images/peranets/06-making.jpg" alt="Assembling the inlaid acrylic tiles by hand" loading="lazy"></figure>
+
+      <div class="fig">
+        <h2>Companion Interface</h2>
+        <figure><img src="../images/guitario/04-interface.jpg" alt="Companion interface panels" loading="lazy"></figure>
+        <p class="cap">Learner progression, chord and lyric cues, a virtual fretboard that mirrors the guitar in real time, per-string pressure sensing, learner-level classification, and configurable thresholds that drive the adaptive fading of guidance.</p>
       </div>
-      <div class="row">
-        <figure style="--r:1.217"><img src="../images/peranets/07-surface.jpg" alt="Illuminated tile surface in perspective" loading="lazy"></figure>
+
+      <div class="fig">
+        <h2>Chords &amp; Techniques</h2>
+        <figure><img src="../images/guitario/05-chords.jpg" alt="Beginner chords and intermediate techniques shown on the LED fretboard" loading="lazy"></figure>
+        <p class="cap">Beginner content covers eight open chords (C, G, Dm, D7, Am, Em, D, A), each displayed as LED letters on the neck. Intermediate content covers hammer-ons, pull-offs, single notes and slides.</p>
       </div>
-      <div class="row">
-        <figure style="--r:0.5625"><img src="../images/peranets/08-handheld.jpg" alt="Holding a lit tile against the pink tile surface" loading="lazy"></figure>
-        <figure style="--r:1.217"><img src="../images/peranets/09-floor.jpg" alt="Stepping on the tiles as a floor interface" loading="lazy"></figure>
+
+      <div class="fig">
+        <h2>User Study</h2>
+        <figure><img src="../images/guitario/06-study.jpg" alt="Study procedure diagram" loading="lazy"></figure>
+        <p class="cap">A counterbalanced study compared LED guidance alone with the GuitarIO adaptive system, moving from initial assessment through guided practice and fading hints to unassisted free play, framed by pre- and post-study interviews.</p>
       </div>
+
     </div>
 
     <div class="project-end">
@@ -241,7 +270,7 @@
 
   <script>
     (function () {
-      var imgs =Array.prototype.slice.call(document.querySelectorAll('.gallery img'));
+      var imgs =Array.prototype.slice.call(document.querySelectorAll('.zoomable img'));
       var lb = document.getElementById('lightbox');
       var big = lb.querySelector('img');
       var count = lb.querySelector('.lb-count');

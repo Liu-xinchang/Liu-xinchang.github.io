@@ -112,6 +112,10 @@
     .slide-img.swap .swap-2 { opacity: 0; }
     .slide a:hover .slide-img.swap .swap-2 { opacity: 1; }
     .slide a:hover .slide-img.swap img { filter: none; }
+    /* Always-colour cover (GuitarIO) — wide image, keep the guitar side in frame */
+    .slide-img.color img { filter: none; object-position: 30% center; }
+    .slide a:hover .slide-img.color img { filter: none; }
+
     /* Lighter overlay here so the photo change stays visible */
     .slide-img.swap .overlay { background: rgba(0,0,0,.12); align-items: flex-end; padding-bottom: 22px; }
 
@@ -240,7 +244,21 @@
               </a>
             </div>
 
-            <!-- Slide 2 -->
+            <!-- Slide 2: GuitarIO -->
+            <div class="slide">
+              <a href="projects/guitario.html">
+                <div class="slide-img color">
+                  <img src="images/guitario/cover.jpg" alt="GuitarIO interactive guitar and companion interface">
+                  <div class="overlay">View project →</div>
+                </div>
+                <div class="caption">
+                  <h4>GuitarIO</h4>
+                  <div class="tags">Interaction Design · HCI · Physical Computing</div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Slide 3 -->
             <div class="slide">
               <a href="projects/hydrogel.html">
                 <div class="slide-img">
@@ -255,7 +273,7 @@
               </a>
             </div>
 
-            <!-- Slide 3 -->
+            <!-- Slide 4 -->
             <div class="slide">
               <a href="projects/liquid-metal.html">
                 <div class="slide-img">
