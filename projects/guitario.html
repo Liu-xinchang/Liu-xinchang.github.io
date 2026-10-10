@@ -128,6 +128,8 @@
     .video-wide { position: relative; background: #000; margin-bottom: 72px; }
     .video-wide video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
     .video-wide .sound-btn { top: 16px; }
+    .video-wide.inline { margin-bottom: 0; }
+    .fig-label { font-size: 15px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
 
     /* Figure sections with a heading and caption */
     .fig { margin-bottom: 72px; }
@@ -178,9 +180,10 @@
       </div>
     </div>
 
-    <!-- ================= VIDEO (plays with sound) ================= -->
+    <!-- ================= MAIN VIDEO: finished prototype (plays with sound) ================= -->
+    <div class="fig-label">Final Prototype</div>
     <div class="video-wide">
-      <video id="project-video" src="../videos/guitario.mp4" poster="../images/guitario/video-poster.jpg"
+      <video id="project-video" src="../videos/guitario-showcase.mp4" poster="../images/guitario/showcase-poster.jpg"
              playsinline controls preload="auto"></video>
       <button class="sound-btn" id="sound-btn" hidden>🔊 Tap for sound</button>
     </div>
@@ -189,13 +192,12 @@
     <div class="zoomable">
 
       <div class="fig">
-        <figure><img src="../images/guitario/01-play.jpg" alt="Playing GuitarIO with LED chord guidance on the neck and colour-coded fingertips" loading="lazy"></figure>
-      </div>
-
-      <div class="fig">
-        <h2>Overview</h2>
-        <figure><img src="../images/guitario/02-overview.jpg" alt="GuitarIO overview: the instrument, sensing data flow between the guitar and computer, and the companion interface" loading="lazy"></figure>
-        <p class="cap">The guitar senses where and how hard each string is pressed, sends the data to a companion app, and receives instructions back — lighting the next fingering on the neck and tracking progress on screen.</p>
+        <h2>How It Works — System Logic</h2>
+        <div class="video-wide inline">
+          <video src="../videos/guitario-system.mp4" poster="../images/guitario/system-poster.jpg"
+                 playsinline controls preload="metadata"></video>
+        </div>
+        <p class="cap">The learning flow in action: an initial assessment classifies the learner as beginner or intermediate, guided practice lights each fingering on the neck, fading practice gradually removes the hints, and free play checks what the learner can do unassisted.</p>
       </div>
 
       <div class="fig">
