@@ -116,8 +116,8 @@
     .slide-img.color img { filter: none; object-position: 30% center; }
     .slide a:hover .slide-img.color img { filter: none; }
 
-    /* MetaPatch cover-1 is near-square: keep the overlay panel and Psyduck in frame */
-    .slide-img.mp .swap-1 { object-position: center 6%; }
+    /* MetaPatch cover-1: anchor to the left edge so the left side is never cropped */
+    .slide-img.mp .swap-1 { object-position: left center; }
 
     /* Lighter overlay here so the photo change stays visible */
     .slide-img.swap .overlay { background: rgba(0,0,0,.12); align-items: flex-end; padding-bottom: 22px; }
@@ -292,35 +292,6 @@
               </a>
             </div>
 
-            <!-- Slide 5 -->
-            <div class="slide">
-              <a href="projects/hydrogel.html">
-                <div class="slide-img">
-                  <span>Image coming soon</span>
-                  <img src="images/hydrogel.jpg" alt="Hydrogel–Nanofiber Composite Fiber" onerror="this.remove()">
-                  <div class="overlay">View project →</div>
-                </div>
-                <div class="caption">
-                  <h4>Hydrogel–Nanofiber Composite Fiber</h4>
-                  <div class="tags">Material Research · Wearable Technology</div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Slide 6 -->
-            <div class="slide">
-              <a href="projects/liquid-metal.html">
-                <div class="slide-img">
-                  <span>Image coming soon</span>
-                  <img src="images/liquid-metal.jpg" alt="Liquid Metal Textile Interface" onerror="this.remove()">
-                  <div class="overlay">View project →</div>
-                </div>
-                <div class="caption">
-                  <h4>Liquid Metal Textile Interface</h4>
-                  <div class="tags">Smart Textile · Physical Computing</div>
-                </div>
-              </a>
-            </div>
 
             <!-- To add a project: copy one whole <div class="slide">…</div> block here -->
 
