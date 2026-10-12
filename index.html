@@ -116,6 +116,9 @@
     .slide-img.color img { filter: none; object-position: 30% center; }
     .slide a:hover .slide-img.color img { filter: none; }
 
+    /* MetaPatch cover-1 is near-square: keep the overlay panel and Psyduck in frame */
+    .slide-img.mp .swap-1 { object-position: center 6%; }
+
     /* Lighter overlay here so the photo change stays visible */
     .slide-img.swap .overlay { background: rgba(0,0,0,.12); align-items: flex-end; padding-bottom: 22px; }
 
@@ -259,7 +262,22 @@
               </a>
             </div>
 
-            <!-- Slide 3: 3DPP internship — cover-1, cross-fades to cover-2 on hover -->
+            <!-- Slide 3: MetaPatch — cover-1, cross-fades to cover-2 on hover -->
+            <div class="slide">
+              <a href="projects/metapatch.html">
+                <div class="slide-img swap mp">
+                  <img class="swap-1" src="images/metapatch/cover-1.jpg" alt="MetaPatch: a Pokémon card read through NFC with a mixed reality overlay">
+                  <img class="swap-2" src="images/metapatch/cover-2.jpg" alt="" aria-hidden="true">
+                  <div class="overlay">View project →</div>
+                </div>
+                <div class="caption">
+                  <h4>MetaPatch</h4>
+                  <div class="tags">Mixed Reality · NFC · Tangible Interaction</div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Slide 4: 3DPP internship — cover-1, cross-fades to cover-2 on hover -->
             <div class="slide">
               <a href="projects/3dpp-internship.html">
                 <div class="slide-img swap">
@@ -274,7 +292,7 @@
               </a>
             </div>
 
-            <!-- Slide 4 -->
+            <!-- Slide 5 -->
             <div class="slide">
               <a href="projects/hydrogel.html">
                 <div class="slide-img">
@@ -289,7 +307,7 @@
               </a>
             </div>
 
-            <!-- Slide 5 -->
+            <!-- Slide 6 -->
             <div class="slide">
               <a href="projects/liquid-metal.html">
                 <div class="slide-img">
