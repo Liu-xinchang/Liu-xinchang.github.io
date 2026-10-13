@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liu Xinchang — Product & Interaction Designer</title>
-  <meta name="description" content="Liu Xinchang — Product & Interaction Designer based in Singapore, working across emerging materials, physical computing and computational fabrication.">
+  <meta name="description" content="Liu Xinchang — Product & Interaction Designer based in Singapore, working across emerging materials, physical computing and computational fabrication. Available for full-time roles from 1 January 2027.">
   <style>
     /* ===== Colours: dark theme (black background, white text, grey links) ===== */
     :root {
@@ -56,6 +56,14 @@
     .intro p + p { margin-top: 18px; }
     .intro .lead { font-size: 20px; }
     .intro .sub { color: var(--muted); }
+    .intro .avail {
+      display: inline-block; font-size: 15px; color: var(--text);
+      padding: 6px 16px; border: 1px solid var(--line); border-radius: 999px;
+    }
+    .intro .avail::before {
+      content: ""; display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; background: #4cd964; margin-right: 10px;
+    }
 
     /* Profile photo: shows photo 1, cross-fades to photo 2 on hover / tap */
     .portrait {
@@ -135,6 +143,7 @@
     .caption { padding-top: 22px; text-align: center; }
     .caption h4 { font-size: 21px; font-weight: 500; color: var(--text); }
     .caption .tags { color: var(--muted); font-size: 15px; font-style: italic; margin-top: 4px; }
+    .caption .role-line { color: var(--link); font-size: 14px; margin-top: 6px; }
 
     .arrow {
       position: absolute; top: 31%; transform: translateY(-50%);
@@ -164,6 +173,7 @@
     .about .sub { color: var(--muted); font-size: 15px; }
     .about b { font-weight: 500; }
     .skills { color: var(--muted); font-size: 15px; line-height: 2; }
+    .skills .gap { display: block; height: 14px; }
 
     /* ===== Footer ===== */
     footer { border-top: 1px solid var(--line); padding: 64px 0 48px; }
@@ -212,7 +222,9 @@
     <div class="intro">
       <div>
         <p class="lead">Hi, I'm Liu Xinchang, but you can call me Leo!</p>
+        <p class="avail">Available for full-time roles in Singapore from 1 January 2027</p>
         <p>I'm a Product &amp; Interaction Designer based in Singapore, exploring new forms of physical interaction through materials, computation, and fabrication.</p>
+        <p>I design and prototype interactive physical products — from sensors and electronics to materials and form — and take ideas from first sketch to working, tested prototypes.</p>
         <p>I enjoy turning ideas into working prototypes, bringing together emerging materials, physical computing, and computational fabrication. My process often starts with a simple question, followed by hands-on experimentation, making, testing, and plenty of iteration.</p>
         <p class="sub">Outside of design and research, I enjoy running 🏃 and playing the guitar 🎸. I'm always happy to connect, exchange ideas, and explore opportunities for future collaboration — whether it's about design, research, or anything beyond!</p>
       </div>
@@ -243,6 +255,7 @@
                 <div class="caption">
                   <h4>PeraNETS</h4>
                   <div class="tags">Interaction Design · HCI · Fabrication — DIS 2026</div>
+                  <div class="role-line">Co-author · Peer-reviewed demonstration, ACM DIS '26 Companion</div>
                 </div>
               </a>
             </div>
@@ -258,6 +271,7 @@
                 <div class="caption">
                   <h4>GuitarIO</h4>
                   <div class="tags">Interaction Design · HCI · Physical Computing</div>
+                  <!-- <div class="role-line">Role · key result (e.g. "Designed & built ...; N-participant test")</div> -->
                 </div>
               </a>
             </div>
@@ -273,6 +287,7 @@
                 <div class="caption">
                   <h4>MetaPatch</h4>
                   <div class="tags">Mixed Reality · NFC · Tangible Interaction</div>
+                  <!-- <div class="role-line">Role · key result</div> -->
                 </div>
               </a>
             </div>
@@ -288,6 +303,7 @@
                 <div class="caption">
                   <h4>3D Printing &amp; Medical Visualization Intern</h4>
                   <div class="tags">Internship · 3DPP Lab, Duke-NUS Medical School / SingHealth</div>
+                  <!-- <div class="role-line">What you produced · who you worked with</div> -->
                 </div>
               </a>
             </div>
@@ -310,9 +326,9 @@
 
       <h3>Interaction Design &amp; HCI</h3>
       <div class="pub">
-        <span class="authors"><b>Liu, X.</b>, Co-author, A., &amp; Co-author, B.</span> (2026).
-        <a href="#">"PeraNETS: Peranakan-Inspired Architectural Tiles as Modular Interfaces"</a>
-        <span class="venue">ACM Designing Interactive Systems Conference (DIS).</span>
+        <span class="authors">Choi, M., Zhang, J., <b>Liu, X.</b>, &amp; Wicaksono, I.</span> (2026).
+        <a href="https://dl.acm.org/doi/10.1145/3802974.3808022" target="_blank" rel="noopener">"PeraNETS: Peranakan-Inspired Architectural Tiles as Modular Interfaces"</a>
+        <span class="venue">DIS '26 Companion: Companion Publication of the 2026 ACM Designing Interactive Systems Conference, pp. 556–560 (Demonstration).</span>
       </div>
       <!-- Copy the <div class="pub"> block above to add more -->
     </section>
@@ -322,14 +338,13 @@
       <h2>About</h2>
       <div class="about">
         <div class="skills">
-          Programming — Arduino, C/C++<br>
-          Electronics — PCB design, multi-sensor fusion, NFC / BLE<br>
-          AI &amp; ML — LLM API integration (OpenAI / local-model APIs), supervised ML training for gesture &amp; playing-pattern classification<br>
+          Physical computing — Arduino, C/C++, PCB design, multi-sensor fusion, NFC / BLE<br>
+          Prototyping &amp; fabrication — 3D printing, laser cutting, silicone moulding<br>
+          3D modelling &amp; rendering — Rhino, SolidWorks, Blender, KeyShot
+          <span class="gap"></span>
           Interactive &amp; XR — Unity, mixed reality, animation, game development<br>
-          Modeling — Rhino, Blender, SolidWorks<br>
-          Rendering — KeyShot<br>
-          Design — Photoshop, Illustrator, InDesign, Premiere Pro, Figma<br>
-          Fabrication — 3D printing, laser cutting, silicone moulding
+          AI &amp; ML — LLM API integration (OpenAI / local-model APIs), supervised ML training for gesture &amp; playing-pattern classification<br>
+          Design tools — Figma, Photoshop, Illustrator, InDesign, Premiere Pro
         </div>
         <div>
           <p><b>National University of Singapore</b> — Research Master, Industrial Design<br>
@@ -347,7 +362,7 @@
   <footer id="contact">
     <div class="wrap">
       <h2>Contact</h2>
-      <p style="color: var(--muted);">Open to product, interaction and R&amp;D design roles in Singapore.</p>
+      <p style="color: var(--muted);">Open to product, interaction and R&amp;D design roles in Singapore. Available for full-time work from 1 January 2027.</p>
       <div class="links" style="margin-top: 20px;">
         <a href="mailto:liuxinchang@u.nus.edu">liuxinchang@u.nus.edu</a>
         <a href="tel:+6586476870">+65 8647 6870</a>
