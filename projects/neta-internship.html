@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interior Design Intern, Neta Auto — Liu Xinchang</title>
+  <meta name="description" content="Interior design internship at Neta Auto (Nezha): interior components, design presentations and an injection-moulding analysis of a centre-console liner in Autodesk Moldflow.">
+  <style>
+    :root {
+      --bg: #000;
+      --text: #fff;
+      --link: #d5d5d5;
+      --muted: #8a8a8a;
+      --line: #393939;
+      --placeholder: #141414;
+      --max: 1080px;
+      --gap: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--link); text-decoration: none; transition: opacity .25s; }
+    a:hover { opacity: .6; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* ===== Header (same as homepage) ===== */
+    header { border-bottom: 1px solid var(--line); }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px; padding: 22px 0;
+    }
+    .brand { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    .brand .name { color: var(--text); font-size: 20px; font-weight: 500; }
+    .brand .role {
+      color: var(--muted); font-size: 15px;
+      padding-left: 14px; border-left: 1px solid var(--line);
+    }
+    .nav ul { list-style: none; display: flex; gap: 24px; font-size: 15px; }
+
+    /* ===== Project intro ===== */
+    .back { display: inline-block; margin-top: 40px; font-size: 15px; color: var(--muted); }
+
+    .hero {
+      display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px;
+      align-items: center; padding: 40px 0 72px;
+    }
+    h1 { font-size: clamp(36px, 5vw, 52px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
+    .subtitle { margin-top: 10px; color: var(--muted); font-size: 18px; }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 8px 28px;
+      margin: 28px 0 32px; padding: 16px 0;
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+    .meta div span { display: block; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; }
+    .hero p + p { margin-top: 18px; }
+
+    /* Portrait project video */
+    .video-box { position: relative; background: var(--placeholder); }
+    .sound-btn {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,.7); color: #fff; border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px; padding: 8px 16px; font: inherit; font-size: 14px; cursor: pointer;
+    }
+    .sound-btn:hover { background: rgba(255,255,255,.15); }
+    .video-box video { display: block; width: 100%; max-height: 82vh; object-fit: contain; background: #000; }
+
+    /* ===== Gallery ===== */
+    .gallery { display: flex; flex-direction: column; gap: var(--gap); padding-bottom: 80px; }
+    .row { display: flex; gap: var(--gap); }
+    /* Each image grows in proportion to its aspect ratio, so every row has equal heights */
+    .row figure { flex: var(--r) 1 0; min-width: 0; background: var(--placeholder); overflow: hidden; cursor: zoom-in; }
+    .row img { display: block; width: 100%; height: auto; transition: transform .8s ease, opacity .4s; }
+    .row figure:hover img { transform: scale(1.02); }
+
+    /* ===== Lightbox ===== */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 50;
+      background: rgba(0,0,0,.94);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: auto; }
+    .lightbox img { max-width: 92vw; max-height: 88vh; object-fit: contain; }
+    .lb-btn {
+      position: absolute; background: none; border: none; color: #fff;
+      font-size: 36px; line-height: 1; cursor: pointer; padding: 16px; opacity: .6;
+      transition: opacity .25s, transform .5s;
+    }
+    .lb-btn:hover { opacity: 1; }
+    .lb-close { top: 12px; right: 16px; font-size: 32px; }
+    .lb-close:hover { transform: rotate(90deg); }
+    .lb-prev { left: 8px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 8px; top: 50%; transform: translateY(-50%); }
+    .lb-count { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: var(--muted); font-size: 13px; }
+
+    /* ===== Footer ===== */
+    .project-end {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      border-top: 1px solid var(--line); padding: 40px 0;
+    }
+    footer { border-top: 1px solid var(--line); padding: 40px 0; color: var(--muted); font-size: 13px; }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 760px) {
+      body { font-size: 16px; }
+      .nav ul { gap: 16px; font-size: 14px; }
+      .hero { grid-template-columns: 1fr; gap: 36px; padding-bottom: 48px; }
+      .video-box { max-width: 380px; width: 100%; margin: 0 auto; }
+      .row { flex-direction: column; }
+      .row figure { flex: none; }
+    }
+
+    /* Wide video for GuitarIO */
+    .hero.single { grid-template-columns: 1fr; gap: 0; padding-bottom: 40px; }
+    .hero.single .intro-text { max-width: 820px; }
+    .video-wide { position: relative; background: #000; margin-bottom: 72px; }
+    .video-wide video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+    .video-wide .sound-btn { top: 16px; }
+    .video-wide.inline { margin-bottom: 0; }
+    .fig-label { font-size: 15px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+
+    /* Figure sections with a heading and caption */
+    .fig { margin-bottom: 72px; }
+    .fig h2 { font-size: 15px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+    .fig figure { background: var(--placeholder); cursor: zoom-in; overflow: hidden; }
+    .fig img { display: block; width: 100%; height: auto; transition: transform .8s ease; }
+    .fig figure:hover img { transform: scale(1.01); }
+    .fig figcaption, .fig .cap { margin-top: 14px; color: var(--muted); font-size: 15px; max-width: 820px; }
+
+    /* Internship page */
+    .eyebrow { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 14px; }
+    .section { padding: 8px 0 56px; max-width: 820px; }
+    .section h2 { font-size: 15px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 18px; }
+    .section p + p { margin-top: 18px; }
+    .contrib { list-style: none; border-top: 1px solid var(--line); }
+    .contrib li { padding: 16px 0 16px 34px; border-bottom: 1px solid var(--line); position: relative; }
+    .contrib li::before { content: counter(item, decimal-leading-zero); counter-increment: item; position: absolute; left: 0; top: 17px; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+    .contrib { counter-reset: item; }
+
+    /* Captioned figures inside gallery rows */
+    .row figure.cap-fig { background: none; }
+    .row figure.cap-fig img { background: var(--placeholder); }
+    .row figcaption { padding: 12px 2px 0; color: var(--muted); font-size: 14px; }
+    .row figcaption b { color: var(--text); font-weight: 500; }
+    .gallery.tight { padding-bottom: 56px; }
+    .credit { margin-top: -40px; margin-bottom: 56px; color: var(--muted); font-size: 13px; }
+    .spec { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .spec span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--link); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <a href="../index.html" class="name">Liu Xinchang</a>
+        <span class="role">Product &amp; Interaction Designer</span>
+      </div>
+      <ul>
+        <li><a href="../index.html#work">work</a></li>
+        <li><a href="../index.html#research">research</a></li>
+        <li><a href="../index.html#about">about</a></li>
+        <li><a href="../cv.pdf" target="_blank">cv</a></li>
+        <li><a href="../index.html#contact">contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <a href="../index.html#work" class="back">← All work</a>
+
+    <div class="hero single">
+      <div class="intro-text">
+        <div class="eyebrow">Internship Experience</div>
+        <h1>Interior Design Intern</h1>
+        <div class="subtitle">Neta Auto (Nezha) · Electric vehicle interiors</div>
+
+        <div class="meta">
+          <div><span>Period</span>Mar 2022</div>
+          <div><span>Focus</span>Interior Components · Ergonomics · Manufacturability</div>
+          <div><span>Tools</span>Autodesk Moldflow · Photoshop · Illustrator · InDesign · Figma</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>At Neta Auto, I worked on interior components for production electric vehicles, with a focus on comfort, spatial ergonomics, and aesthetics. I developed concepts informed by user research and benchmarking, and communicated them to engineers and designers through presentation boards, mood boards, and material boards.</p>
+      <p>Beyond the visual design, I checked whether a part could actually be made. For a centre-console liner, I ran an injection-moulding study in Autodesk Moldflow to find the best gate position and confirm that the part would fill completely and evenly before tooling.</p>
+    </div>
+
+    <div class="section">
+      <h2>Key Contributions</h2>
+      <ul class="contrib">
+        <li>Developed interior components with a focus on comfort, spatial ergonomics, and aesthetics, informed by user research and benchmarking.</li>
+        <li>Produced design presentations, mood boards, and material boards to communicate concept, colour, and finish.</li>
+        <li>Ran a mould-flow study of a centre-console liner in Autodesk Moldflow Adviser: gate location, fill time, confidence of fill, and orientation at skin.</li>
+        <li>Presented and refined design proposals with engineers and designers through prototyping and evaluation.</li>
+      </ul>
+    </div>
+
+    <!-- ================= PRODUCTION INTERIOR ================= -->
+    <div class="section">
+      <h2>The Production Interior</h2>
+    </div>
+    <div class="gallery tight zoomable" style="margin-top:-36px">
+      <div class="row">
+        <figure style="--r:2"><img src="../images/neta/interior-dashboard.jpg" alt="Neta interior: dashboard, wraparound screen and centre console" loading="lazy"></figure>
+      </div>
+      <div class="row">
+        <figure style="--r:2"><img src="../images/neta/interior-lounge.jpg" alt="Neta interior: reclined front seat and centre console" loading="lazy"></figure>
+      </div>
+    </div>
+    <p class="credit">Official product images © Neta Auto.</p>
+
+    <!-- ================= MOLDFLOW CASE STUDY ================= -->
+    <div class="section">
+      <h2>Case Study — Centre-Console Liner Mould-Flow Analysis</h2>
+      <p>The liner is a soft insert that sits in the centre-console tray, divided into two pockets. Because it is a large, thin part with deep pockets and side clips, the gate position decides whether the melt reaches every corner. I set up the study in Autodesk Moldflow Adviser to check this before any tooling was made.</p>
+      <div class="spec">
+        <span>Autodesk Moldflow Adviser</span><span>Dual-Domain mesh</span><span>TPE · Tefabloc TO SI 431 65A</span><span>Single gate</span>
+      </div>
+    </div>
+
+    <div class="gallery tight zoomable" style="margin-top:-24px">
+      <div class="row">
+        <figure class="cap-fig" style="--r:1.41"><img src="../images/neta/moldflow-model.jpg" alt="Centre-console liner part model in Moldflow" loading="lazy">
+          <figcaption><b>The part.</b> Two pockets divided by a central rib, with side clips and five rectangular openings.</figcaption></figure>
+        <figure class="cap-fig" style="--r:1.586"><img src="../images/neta/moldflow-gate-ui.jpg" alt="Best gate location analysis in Moldflow Adviser" loading="lazy">
+          <figcaption><b>Best gate location.</b> Blue marks the best region, around the central rib; the outer flange corners score worst.</figcaption></figure>
+      </div>
+      <div class="row">
+        <figure class="cap-fig" style="--r:1.677"><img src="../images/neta/fill-front.gif" alt="Animated fill-time simulation, front view">
+          <figcaption><b>Fill time, front view.</b> From a single gate on the central rib, the melt spreads outward evenly into both pockets.</figcaption></figure>
+        <figure class="cap-fig" style="--r:1.678"><img src="../images/neta/fill-back.gif" alt="Animated fill-time simulation, back view">
+          <figcaption><b>Fill time, back view.</b> The flange corners fill last, and the whole part fills in about 0.64 s.</figcaption></figure>
+      </div>
+      <div class="row">
+        <figure class="cap-fig" style="--r:1.676"><img src="../images/neta/moldflow-confidence.jpg" alt="Confidence of fill result: 100% high" loading="lazy">
+          <figcaption><b>Confidence of fill.</b> 100% high confidence across the part, so no short shots are predicted.</figcaption></figure>
+        <figure class="cap-fig" style="--r:1.674"><img src="../images/neta/moldflow-orientation.jpg" alt="Orientation at skin result" loading="lazy">
+          <figcaption><b>Orientation at skin.</b> The flow direction radiates smoothly from the gate, which helps predict surface appearance and shrinkage.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="project-end">
+      <a href="../index.html#work">← Back to all work</a>
+      <a href="#">Back to top ↑</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Liu Xinchang</div>
+  </footer>
+
+  <!-- ================= LIGHTBOX ================= -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-btn lb-close" aria-label="Close">×</button>
+    <button class="lb-btn lb-prev" aria-label="Previous">‹</button>
+    <img alt="">
+    <button class="lb-btn lb-next" aria-label="Next">›</button>
+    <div class="lb-count"></div>
+  </div>
+
+  <script>
+    (function () {
+      var imgs =Array.prototype.slice.call(document.querySelectorAll('.zoomable img'));
+      var lb = document.getElementById('lightbox');
+      var big = lb.querySelector('img');
+      var count = lb.querySelector('.lb-count');
+      var i = 0;
+
+      function show(n) {
+        i = (n + imgs.length) % imgs.length;
+        big.src = imgs[i].src;
+        big.alt = imgs[i].alt;
+        count.textContent = (i + 1) + ' / ' + imgs.length;
+      }
+      function open(n) { show(n); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); }
+      function close() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); }
+
+      imgs.forEach(function (im, n) { im.parentNode.addEventListener('click', function () { open(n); }); });
+      lb.querySelector('.lb-close').addEventListener('click', close);
+      lb.querySelector('.lb-prev').addEventListener('click', function (e) { e.stopPropagation(); show(i - 1); });
+      lb.querySelector('.lb-next').addEventListener('click', function (e) { e.stopPropagation(); show(i + 1); });
+      lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+      document.addEventListener('keydown', function (e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(i - 1);
+        if (e.key === 'ArrowRight') show(i + 1);
+      });
+
+      // Swipe in the lightbox on phones
+      var x0 = null;
+      lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+        x0 = null;
+      });
+    })();
+  </script>
+
+</body>
+</html>
