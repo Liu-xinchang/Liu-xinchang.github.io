@@ -90,77 +90,44 @@
     h3 { font-size: 15px; font-weight: 500; color: var(--muted);
          text-transform: uppercase; letter-spacing: .1em; margin: 36px 0 18px; }
 
-    /* ===== Carousel ===== */
-    .carousel { position: relative; width: 82%; margin: 0 auto; }
-    .viewport { overflow: hidden; }
-    .track {
-      display: flex;
-      transition: transform .7s cubic-bezier(.65,0,.35,1);
-    }
-    .slide { flex: 0 0 100%; }
-    .slide a { display: block; color: inherit; }
-    .slide a:hover { opacity: 1; }
+    /* ===== Work grid: every project visible at once ===== */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 24px; }
+    .grid.two { grid-template-columns: repeat(2, 1fr); }
+    .card a { display: block; color: inherit; }
+    .card a:hover { opacity: 1; }
 
-    .slide-img {
+    .card-img {
       position: relative; aspect-ratio: 16 / 10;
       background: var(--placeholder); overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      color: #555; font-size: 14px;
     }
-    .slide-img img {
+    .card-img img {
       position: absolute; inset: 0;
       width: 100%; height: 100%; object-fit: cover;
-      filter: grayscale(100%);
-      transition: filter .6s ease, transform .8s ease;
+      transition: opacity .8s ease, transform .8s ease;
     }
-    .slide a:hover .slide-img img { filter: grayscale(0%); transform: scale(1.02); }
+    .card a:hover .card-img img { transform: scale(1.03); }
+    /* Two-photo cover: photo 2 fades in on hover (same effect as the profile photo) */
+    .card-img .swap-2 { opacity: 0; }
+    .card a:hover .card-img .swap-2 { opacity: 1; }
+    .card-img.color img { object-position: 30% center; }   /* GuitarIO: keep the guitar in frame */
+    .card-img.mp .swap-1 { object-position: left center; } /* MetaPatch: never crop the left side */
 
-    /* Two-photo cover: always in colour, photo 2 fades in on hover (like the profile photo) */
-    .slide-img.swap img { filter: none; transition: opacity .8s ease, transform .8s ease; }
-    .slide-img.swap .swap-2 { opacity: 0; }
-    .slide a:hover .slide-img.swap .swap-2 { opacity: 1; }
-    .slide a:hover .slide-img.swap img { filter: none; }
-    /* Always-colour cover (GuitarIO) — wide image, keep the guitar side in frame */
-    .slide-img.color img { filter: none; object-position: 30% center; }
-    .slide a:hover .slide-img.color img { filter: none; }
-
-    /* MetaPatch cover-1: anchor to the left edge so the left side is never cropped */
-    .slide-img.mp .swap-1 { object-position: left center; }
-
-    /* Lighter overlay here so the photo change stays visible */
-    .slide-img.swap .overlay { background: rgba(0,0,0,.12); align-items: flex-end; padding-bottom: 22px; }
-
-    /* "View project" overlay that fades in on hover */
+    /* "View project" label that fades in on hover */
     .overlay {
       position: absolute; inset: 0; z-index: 2;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(0,0,0,.35);
-      color: #fff; font-size: 16px; letter-spacing: .05em;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      padding: 0 0 16px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 45%);
+      color: #fff; font-size: 14px; letter-spacing: .05em;
       opacity: 0; transition: opacity .5s ease;
     }
-    .slide a:hover .overlay { opacity: 1; }
+    .card a:hover .overlay { opacity: 1; }
 
-    .caption { padding-top: 22px; text-align: center; }
-    .caption h4 { font-size: 21px; font-weight: 500; color: var(--text); }
-    .caption .tags { color: var(--muted); font-size: 15px; font-style: italic; margin-top: 4px; }
+    .caption { padding-top: 16px; }
+    .caption h4 { font-size: 19px; font-weight: 500; color: var(--text); line-height: 1.35; }
+    .caption .tags { color: var(--muted); font-size: 14px; font-style: italic; margin-top: 4px; }
     .caption .role-line { color: var(--link); font-size: 14px; margin-top: 6px; }
-
-    .arrow {
-      position: absolute; top: 31%; transform: translateY(-50%);
-      background: none; border: none; color: var(--text);
-      font-size: 34px; line-height: 1; cursor: pointer;
-      padding: 12px; opacity: .55; transition: opacity .25s;
-    }
-    .arrow:hover { opacity: 1; }
-    .arrow.prev { left: -64px; }
-    .arrow.next { right: -64px; }
-
-    .dots { display: flex; justify-content: center; gap: 10px; margin-top: 26px; }
-    .dots button {
-      width: 28px; height: 3px; border: none; padding: 0;
-      background: var(--line); cursor: pointer; transition: background .3s;
-    }
-    .dots button.active { background: var(--text); }
+    #work h3:first-of-type { margin-top: 0; }
 
     /* ===== Publications ===== */
     .pub { padding: 14px 0; }
@@ -182,10 +149,10 @@
 
     /* ===== Mobile ===== */
     @media (max-width: 860px) {
-      .carousel { width: 100%; }
-      .arrow { top: auto; bottom: -14px; transform: none; font-size: 28px; }
-      .arrow.prev { left: 0; }
-      .arrow.next { right: 0; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .grid, .grid.two { grid-template-columns: 1fr; gap: 36px; }
     }
     @media (max-width: 720px) {
       body { font-size: 16px; }
@@ -240,84 +207,91 @@
     <section id="work">
       <h2>Featured Projects &amp; Experience</h2>
 
-      <div class="carousel" id="carousel">
-        <div class="viewport">
-          <div class="track">
+      <h3>Research Projects</h3>
+      <div class="grid">
 
-            <!-- Slide 1: shows cover-1, cross-fades to cover-2 on hover (same effect as the profile photo) -->
-            <div class="slide">
-              <a href="projects/peranets.html">
-                <div class="slide-img swap">
-                  <img class="swap-1" src="images/peranets/cover-1.jpg" alt="PeraNETS interactive tile wall">
-                  <img class="swap-2" src="images/peranets/cover-2.jpg" alt="" aria-hidden="true">
-                  <div class="overlay">View project →</div>
-                </div>
-                <div class="caption">
-                  <h4>PeraNETS</h4>
-                  <div class="tags">Interaction Design · HCI · Fabrication — DIS 2026</div>
-                  <div class="role-line">Co-author · Peer-reviewed demonstration, ACM DIS '26 Companion</div>
-                </div>
-              </a>
+        <div class="card">
+          <a href="projects/peranets.html">
+            <div class="card-img">
+              <img class="swap-1" src="images/peranets/cover-1.jpg" alt="PeraNETS interactive tile wall">
+              <img class="swap-2" src="images/peranets/cover-2.jpg" alt="" aria-hidden="true">
+              <div class="overlay">View project →</div>
             </div>
-
-            <!-- Slide 2: GuitarIO -->
-            <div class="slide">
-              <a href="projects/guitario.html">
-                <div class="slide-img swap color">
-                  <img class="swap-1" src="images/guitario/02-overview.jpg" alt="GuitarIO interactive guitar and companion interface">
-                  <img class="swap-2" src="images/guitario/01-play.jpg" alt="" aria-hidden="true">
-                  <div class="overlay">View project →</div>
-                </div>
-                <div class="caption">
-                  <h4>GuitarIO</h4>
-                  <div class="tags">Interaction Design · HCI · Physical Computing</div>
-                  <!-- <div class="role-line">Role · key result (e.g. "Designed & built ...; N-participant test")</div> -->
-                </div>
-              </a>
+            <div class="caption">
+              <h4>PeraNETS</h4>
+              <div class="tags">Interaction Design · HCI · Fabrication</div>
+              <div class="role-line">Co-author · ACM DIS '26 Companion (Demo)</div>
             </div>
-
-            <!-- Slide 3: MetaPatch — cover-1, cross-fades to cover-2 on hover -->
-            <div class="slide">
-              <a href="projects/metapatch.html">
-                <div class="slide-img swap mp">
-                  <img class="swap-1" src="images/metapatch/cover-1.jpg" alt="MetaPatch: a Pokémon card read through NFC with a mixed reality overlay">
-                  <img class="swap-2" src="images/metapatch/cover-2.jpg" alt="" aria-hidden="true">
-                  <div class="overlay">View project →</div>
-                </div>
-                <div class="caption">
-                  <h4>MetaPatch</h4>
-                  <div class="tags">Mixed Reality · NFC · Tangible Interaction</div>
-                  <!-- <div class="role-line">Role · key result</div> -->
-                </div>
-              </a>
-            </div>
-
-            <!-- Slide 4: 3DPP internship — cover-1, cross-fades to cover-2 on hover -->
-            <div class="slide">
-              <a href="projects/3dpp-internship.html">
-                <div class="slide-img swap">
-                  <img class="swap-1" src="images/3dpp/cover-1.jpg" alt="3D Printing &amp; Prototyping Lab Internship at Duke-NUS Medical School">
-                  <img class="swap-2" src="images/3dpp/cover-2.jpg" alt="" aria-hidden="true">
-                  <div class="overlay">View experience →</div>
-                </div>
-                <div class="caption">
-                  <h4>3D Printing &amp; Medical Visualization Intern</h4>
-                  <div class="tags">Internship · 3DPP Lab, Duke-NUS Medical School / SingHealth</div>
-                  <!-- <div class="role-line">What you produced · who you worked with</div> -->
-                </div>
-              </a>
-            </div>
-
-
-            <!-- To add a project: copy one whole <div class="slide">…</div> block here -->
-
-          </div>
+          </a>
         </div>
 
-        <button class="arrow prev" aria-label="Previous">‹</button>
-        <button class="arrow next" aria-label="Next">›</button>
-        <div class="dots"></div>
+        <div class="card">
+          <a href="projects/guitario.html">
+            <div class="card-img color">
+              <img class="swap-1" src="images/guitario/02-overview.jpg" alt="GuitarIO interactive guitar and companion interface">
+              <img class="swap-2" src="images/guitario/01-play.jpg" alt="" aria-hidden="true">
+              <div class="overlay">View project →</div>
+            </div>
+            <div class="caption">
+              <h4>GuitarIO</h4>
+              <div class="tags">Interaction Design · HCI · Physical Computing</div>
+              <div class="role-line">Sensing guitar · 25-participant user study</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="projects/metapatch.html">
+            <div class="card-img mp">
+              <img class="swap-1" src="images/metapatch/cover-1.jpg" alt="MetaPatch: a Pokémon card read through NFC with a mixed reality overlay">
+              <img class="swap-2" src="images/metapatch/cover-2.jpg" alt="" aria-hidden="true">
+              <div class="overlay">View project →</div>
+            </div>
+            <div class="caption">
+              <h4>MetaPatch</h4>
+              <div class="tags">Mixed Reality · NFC · Tangible Interaction</div>
+              <div class="role-line">Wearable NFC readers · Unity / OpenXR</div>
+            </div>
+          </a>
+        </div>
+
       </div>
+
+      <h3>Industry Experience</h3>
+      <div class="grid two">
+
+        <div class="card">
+          <a href="projects/3dpp-internship.html">
+            <div class="card-img">
+              <img class="swap-1" src="images/3dpp/cover-1.jpg" alt="3D Printing &amp; Prototyping Lab Internship at Duke-NUS Medical School">
+              <img class="swap-2" src="images/3dpp/cover-2.jpg" alt="" aria-hidden="true">
+              <div class="overlay">View experience →</div>
+            </div>
+            <div class="caption">
+              <h4>3D Printing &amp; Medical Visualization Intern</h4>
+              <div class="tags">3DPP Lab, Duke-NUS Medical School / SingHealth</div>
+              <div class="role-line">Apr – Oct 2026 · Anatomical models · Moulds · FEA &amp; mould-flow</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="projects/neta-internship.html">
+            <div class="card-img">
+              <img class="swap-1" src="images/neta/interior-dashboard.jpg" alt="Neta production vehicle interior">
+              <img class="swap-2" src="images/neta/fill-front.gif" alt="" aria-hidden="true">
+              <div class="overlay">View experience →</div>
+            </div>
+            <div class="caption">
+              <h4>Interior Design Intern</h4>
+              <div class="tags">Neta Auto (Nezha)</div>
+              <div class="role-line">Mar 2022 · Interior components · Moldflow analysis</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+      <!-- To add a project: copy one whole <div class="card">…</div> block into a grid -->
     </section>
 
     <!-- ================= RESEARCH ================= -->
@@ -351,7 +325,7 @@
           <span class="sub">Soft Technology Lab, College of Design and Engineering · 2025 – 2027</span></p>
           <p><b>Hunan University of Technology</b> — B.Des. Product Design<br>
           <span class="sub">2020 – 2024</span></p>
-          <p>Interned as a 3D Printing &amp; Medical Visualization Intern at the 3DPP Lab, Duke-NUS Medical School / SingHealth; previously interned in interior design at Neta and as a curator intern at China Textile Publishing House.</p>
+          <p>Interned as a <a href="projects/3dpp-internship.html">3D Printing &amp; Medical Visualization Intern</a> at the 3DPP Lab, Duke-NUS Medical School / SingHealth; previously interned in <a href="projects/neta-internship.html">interior design at Neta Auto</a> and as a curator intern at China Textile Publishing House.</p>
         </div>
       </div>
     </section>
@@ -378,64 +352,6 @@
     document.getElementById('portrait').addEventListener('click', function () {
       this.classList.toggle('show-2');
     });
-  </script>
-
-  <!-- ================= CAROUSEL SCRIPT ================= -->
-  <script>
-    (function () {
-      var root = document.getElementById('carousel');
-      var track = root.querySelector('.track');
-      var slides = root.querySelectorAll('.slide');
-      var dotsBox = root.querySelector('.dots');
-      var index = 0;
-      var timer;
-      var DELAY = 5000; // auto-scroll every 5 seconds
-
-      slides.forEach(function (_, i) {
-        var b = document.createElement('button');
-        b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        b.addEventListener('click', function () { go(i); restart(); });
-        dotsBox.appendChild(b);
-      });
-      var dots = dotsBox.querySelectorAll('button');
-
-      function go(i) {
-        index = (i + slides.length) % slides.length;
-        track.style.transform = 'translateX(-' + index * 100 + '%)';
-        dots.forEach(function (d, j) { d.classList.toggle('active', j === index); });
-        // Only play the video on the visible slide
-        slides.forEach(function (s, j) {
-          var v = s.querySelector('video');
-          if (!v) return;
-          if (j === index) { var p = v.play(); if (p) p.catch(function () {}); }
-          else v.pause();
-        });
-      }
-      function restart() {
-        clearInterval(timer);
-        timer = setInterval(function () { go(index + 1); }, DELAY);
-      }
-
-      root.querySelector('.prev').addEventListener('click', function () { go(index - 1); restart(); });
-      root.querySelector('.next').addEventListener('click', function () { go(index + 1); restart(); });
-
-      // Pause while the mouse is over the carousel
-      root.addEventListener('mouseenter', function () { clearInterval(timer); });
-      root.addEventListener('mouseleave', restart);
-
-      // Swipe on phones
-      var startX = null;
-      root.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
-      root.addEventListener('touchend', function (e) {
-        if (startX === null) return;
-        var dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 40) { go(index + (dx < 0 ? 1 : -1)); restart(); }
-        startX = null;
-      });
-
-      go(0);
-      restart();
-    })();
   </script>
 
 </body>
